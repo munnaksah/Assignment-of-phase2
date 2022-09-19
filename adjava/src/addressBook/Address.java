@@ -17,7 +17,7 @@ public class Address {
 			this.label = label;
 
 		} else {
-			throw new LengthException("Invalid Label,lenght shouble be in range of()1 to 255");
+			throw new LengthException("not valid Label,lenght should be in range of(1 to 255)");
 
 		}
 	}
