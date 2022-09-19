@@ -14,66 +14,65 @@ public class AddressBookDemo {
 		}
 	}
 
-	public static void main(String[] args) throws LengthException {
+	public static void main(String[] args) {
 
 		try {
+			PhoneNumber p = new PhoneNumber();
+			p.setLabel("Work");
+			p.setphoneNumber("8936867545");
 			PhoneNumber p1 = new PhoneNumber();
-			p1.setLabel("Work");
-			p1.setphoneNumber("8936867545");
-			PhoneNumber p2 = new PhoneNumber();
-			p2.setLabel("Home");
-			p2.setphoneNumber("9234564561");
+			p1.setLabel("Home");
+			p1.setphoneNumber("9234564561");
+
+			Address a = new Address();
+			a.setLabel("Home Address");
+			a.setAddress("Bangalore");
 
 			Address a1 = new Address();
-			a1.setLabel("Home Address");
-			a1.setAddress("Bangalore");
+			a1.setLabel("Office Address");
+			a1.setAddress("RICHMOND");
+
+			Contact c = new Contact();
+			c.setName("munna kumar");
+			c.setOrganisation("Maveric");
+			c.addAddress(a1);
+			c.addAddress(a1);
+			c.addPhoneNumber(p1);
+			c.addPhoneNumber(p1);
+
+			PhoneNumber p2 = new PhoneNumber();
+			p2.setLabel("Work");
+			p2.setphoneNumber("9876543223");
+			PhoneNumber p3 = new PhoneNumber();
+			p3.setLabel("Home");
+			p3.setphoneNumber("9938772211");
 
 			Address a2 = new Address();
-			a2.setLabel("Office Address");
-			a2.setAddress("RICHMOND");
-
-			Contact c1 = new Contact();
-			c1.setName("munna kumar");
-			c1.setOrganisation("Maveric");
-			c1.addAddress(a1);
-			c1.addAddress(a2);
-			c1.addPhoneNumber(p2);
-			c1.addPhoneNumber(p1);
-
-			PhoneNumber p3 = new PhoneNumber();
-			p3.setLabel("Work");
-			p3.setphoneNumber("9876543223");
-			PhoneNumber p4 = new PhoneNumber();
-			p4.setLabel("Home");
-			p4.setphoneNumber("9938772211");
+			a2.setLabel("HOME");
+			a2.setAddress("Delhi");
 
 			Address a3 = new Address();
-			a3.setLabel("HOME");
-			a3.setAddress("Delhi");
+			a3.setLabel("OFC");
+			a3.setAddress("RCB-BLR");
 
-			Address a4 = new Address();
-			a4.setLabel("OFC");
-			a4.setAddress("RCB-BLR");
-
-			Contact c2 = new Contact();
-			c2.setName("ms dhoni");
-			c2.setOrganisation("chenaai superking");
-			c2.addAddress(a3);
-			c2.addAddress(a4);
-			c2.addPhoneNumber(p3);
-			c2.addPhoneNumber(p4);
+			Contact c1 = new Contact();
+			c1.setName("ms dhoni");
+			c1.setOrganisation("chenaai superking");
+			c1.addAddress(a3);
+			c1.addAddress(a3);
+			c1.addPhoneNumber(p3);
+			c1.addPhoneNumber(p3);
 
 			// adding to addressbook
 			AddressBook addressBook = new AddressBook();
+			addressBook.addContact(c);
 			addressBook.addContact(c1);
-			addressBook.addContact(c2);
 
 			// Printing if Contacts are present in contactList
 			List<Contact> contactList = addressBook.contactList;
 
 			printList(contactList);
-			System.out.println(
-					"====================================================================================================================");
+			System.out.println("================");
 			/*
 			 * Testing Methods searchByName() searchByOrganisation() updateContact()
 			 * deleteContact()
@@ -81,25 +80,20 @@ public class AddressBookDemo {
 			 * //
 			 */
 			List<Contact> filteredList = addressBook.searchByName("munn");
-			System.out.println(
-					"=====================================searchByName==================================================");
+			System.out.println("===searchByName=======");
 			printList(filteredList);
 
-//			List<Contact> filteredList = addressBook.searchByOrganisation("RC");
-//			System.out.println(
-//					"=====================================searchByOrganisation==================================================");
-//			printList(filteredList);
+			List<Contact> filteredList1 = addressBook.searchByOrganisation("RC");
+			System.out.println("===searchByOrganisation======");
+			printList(filteredList1);
+			addressBook.updateContact("Virat Kohli", c1);
+			addressBook.updateContact("KING", c1); // works
+			System.out.println("========After Updating========");
+			printList(addressBook.contactList);
 
-//			addressBook.updateContact("Virat Kohli", c2); //should throw exception
-//			addressBook.updateContact("KING", c2); // works
-//			System.out.println(
-//					"======================================After Updating======================================");
-//			printList(addressBook.contactList);
-
-//			addressBook.deleteContact("Chandra sekhar");
-//			System.out.println(
-//					"======================================After Deleting======================================");
-//			printList(addressBook.contactList);
+			addressBook.deleteContact("munna kumar");
+			System.out.print("==========After Deleti=======");
+			printList(addressBook.contactList);
 
 		} catch (Exception e) {
 

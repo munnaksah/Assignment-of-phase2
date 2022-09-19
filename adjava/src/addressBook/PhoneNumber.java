@@ -17,7 +17,7 @@ public class PhoneNumber {
 		if (label.length() != 0 && label.length() <= 255) {
 			this.label = label;
 		} else {
-			throw new LengthException("Invalid Label,length should be in the range of (1to255)");
+			throw new LengthException(" not valid Label,length should be in the range of (1to255)");
 		}
 
 	}
@@ -35,6 +35,7 @@ public class PhoneNumber {
 	@Override
 	public String toString() {
 		return "PhoneNumber [label=" + label + ", phoneNumber=" + phoneNumber + "]";
+
 	}
 
 }
